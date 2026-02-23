@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Credit Alert</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f6f9fc;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 30px auto;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h2 {
+            color: #2e7d32; /* green for credit */
+        }
+        p {
+            color: #333;
+            line-height: 1.6;
+        }
+        ul.details {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            text-align: left;
+        }
+        ul.details li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        ul.details li:last-child {
+            border-bottom: none;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 13px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <h2>Credit Alert 💰</h2>
+
+    <p>
+        Dear <strong th:text="${name}">Customer</strong>,
+    </p>
+
+    <p>
+        An amount has been <strong>credited</strong> to your
+        <strong>Bharat Bank</strong> account.
+    </p>
+
+    <ul class="details">
+        <li><strong>Account Number:</strong> <span th:text="${accountNumber}"></span></li>
+        <li><strong>Amount Credited:</strong> ₹<span th:text="${amount}"></span></li>
+        <li><strong>Date:</strong> <span th:text="${date}">--</span></li>
+        <li><strong>Available Balance:</strong> ₹<span th:text="${balance}"></span></li>
+    </ul>
+
+    <div class="footer">
+        ©️ 2026 Bharat Bank | Your Trusted Partner
+        <br/>
+        This is an automated email. Please do not reply.
+    </div>
+
+</div>
+</body>
+</html>

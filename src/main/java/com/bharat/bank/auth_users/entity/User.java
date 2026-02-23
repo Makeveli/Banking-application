@@ -5,20 +5,19 @@ import com.bharat.bank.role.entity.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="users")
+@ToString(exclude = {"accounts","roles"})
 public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

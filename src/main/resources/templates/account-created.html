@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Account Created successfully ✅</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f6f9fc;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 600px;
+        margin: 30px auto;
+        background: #ffffff;
+        border-radius: 8px;
+        padding: 25px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+    h2 {
+        color: #1565c0;
+    }
+    p {
+        color: #333;
+        line-height: 1.6;
+    }
+    ul.account-details {
+        list-style-type: none;
+        padding: 0;
+        margin: 20px 0;
+        text-align: left;
+    }
+    ul.account-details li {
+        padding: 8px 0;
+        border-bottom: 1px solid #e0e0e0;
+        color: #333;
+    }
+    ul.account-details li:last-child {
+        border-bottom: none;
+    }
+    .footer {
+        margin-top: 30px;
+        font-size: 13px;
+        color: #555;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+
+  <h2>Account Created Successfully 🎉</h2>
+
+  <h2>Hello <span th:text="${name}"></span> 👋,</h2>
+
+  <p>
+    We’re happy to inform you that your bank account with
+    <strong>Bharat Bank</strong> has been successfully created.
+  </p>
+
+  <p><b>Account Details:</b></p>
+
+  <ul class="account-details">
+    <li>
+      <strong>Account Number:</strong>
+      <b th:text="${accountNumber}"></b>
+    </li>
+    <li>
+      <strong>Account Type:</strong>
+      <b th:text="${accountType}"></b>
+    </li>
+    <li>
+      <strong>Currency:</strong>
+      <b th:text="${currency}"></b>
+    </li>
+  </ul>
+
+
+  <p>
+    <strong>You can now log in and start using your account immediately.</strong>
+  </p>
+
+  <div class="footer">
+    ©️ 2026 Bharat Bank | Your Trusted Partner
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Account Closed</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f6f9fc;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 600px;
+        margin: 30px auto;
+        background: #ffffff;
+        border-radius: 8px;
+        padding: 25px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+    h2 {
+        color: #c62828; /* calm red for closure */
+    }
+    p {
+        color: #333;
+        line-height: 1.6;
+    }
+    ul.account-details {
+        list-style-type: none;
+        padding: 0;
+        margin: 20px 0;
+        text-align: left;
+    }
+    ul.account-details li {
+        padding: 8px 0;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    ul.account-details li:last-child {
+        border-bottom: none;
+    }
+    .note {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #555;
+    }
+    .footer {
+        margin-top: 30px;
+        font-size: 13px;
+        color: #555;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+
+  <h2>Account Closed Successfully</h2>
+
+  <p>
+    Dear <strong th:text="${name}">Customer</strong>,
+  </p>
+
+  <p>
+    This is to confirm that your account with
+    <strong>Bharat Bank</strong> has been closed successfully.
+  </p>
+
+  <ul class="account-details">
+    <li>
+      <strong>Account Number:</strong>
+      <span th:text="${accountNumber}"></span>
+    </li>
+  </ul>
+
+  <p class="note">
+    If you believe this action was taken in error or have any concerns,
+    please contact our support team immediately.
+  </p>
+
+  <div class="footer">
+    ©️ 2026 Bharat Bank | Your Trusted Partner
+    <br/>
+    This is an automated email. Please do not reply.
+  </div>
+
+</div>
+</body>
+</html>

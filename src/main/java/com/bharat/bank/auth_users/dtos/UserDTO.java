@@ -1,6 +1,7 @@
 package com.bharat.bank.auth_users.dtos;
 
 import com.bharat.bank.account.dtos.AccountDTO;
+import com.bharat.bank.role.dtos.RoleDTO;
 import com.bharat.bank.role.entity.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
