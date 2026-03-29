@@ -6,6 +6,7 @@ import com.bharat.bank.auth_users.dtos.UserDTO;
 import com.bharat.bank.auth_users.entity.User;
 import com.bharat.bank.auth_users.repo.UserRepository;
 import com.bharat.bank.auth_users.services.UserService;
+import com.bharat.bank.aws.service.S3Service;
 import com.bharat.bank.exceptions.BadRequestException;
 import com.bharat.bank.exceptions.NotFoundException;
 import com.bharat.bank.notification.dtos.NotificationDTO;
@@ -45,8 +46,11 @@ public class UserServiceImplementation implements UserService {
     private final NotificationService notificationService;
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
+    private final S3Service s3Service;
 
-    private final String uploadDirectory ="uploads/profile-pictures";
+    //private final String uploadDirectory ="uploads/profile-pictures";
+    //Relative path of frontend
+    private final String uploadDirectory ="C:/Users/hsrak/OneDrive/Documents/Learninggs/Projects/Banking-application-react/public/profile-picture/";
 
     @Override
     public User getCurrentLoggedInUser() {
@@ -139,7 +143,8 @@ public class UserServiceImplementation implements UserService {
 
             Files.copy(file.getInputStream(), filePath);
 
-            String fileUrl = uploadDirectory+newFileName;
+            //String fileUrl = uploadDirectory+newFileName;
+            String fileUrl ="/profile-picture/"+newFileName;
             user.setProfilePictureUrl(fileUrl);
             user.setUpdatedAt(LocalDateTime.now());
 
@@ -153,6 +158,36 @@ public class UserServiceImplementation implements UserService {
         catch (IOException ex){
             throw new RuntimeException(ex.getMessage());
         }
+    }
+
+    @Override
+    public Response<?> uploadProfilePictureToS3(MultipartFile file) {
+
+        User user = getCurrentLoggedInUser();
+
+        try{
+
+            if(user.getProfilePictureUrl() !=null && !user.getProfilePictureUrl().isEmpty()){
+                s3Service.deleteFile(user.getProfilePictureUrl());
+            }
+            String s3Url = s3Service.uploadFile(file,"profile-pictures");
+
+            user.setProfilePictureUrl(s3Url);
+
+            userRepository.save(user);
+
+            return Response.builder()
+                    .statusCode(HttpStatus.OK.value())
+                    .message("Profile picture uploaded successfully!")
+                    .data(s3Url)
+                    .build();
+
+
+
+        }catch (IOException ex){
+            throw new RuntimeException(ex.getMessage());
+        }
+
     }
 
 

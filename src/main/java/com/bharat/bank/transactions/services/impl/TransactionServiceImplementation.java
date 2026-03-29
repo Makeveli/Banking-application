@@ -140,7 +140,7 @@ public class TransactionServiceImplementation implements TransactionService {
             receiverVariables .put("balance",destination.getBalance());
 
             NotificationDTO notificationEmailToReceiver = NotificationDTO.builder()
-                    .recipient(user.getEmail())
+                    .recipient(receiver.getEmail())
                     .subject("Credit Alert")
                     .templateName("credit-alert")
                     .templateVariables(receiverVariables)
@@ -157,7 +157,7 @@ public class TransactionServiceImplementation implements TransactionService {
         Account destinationAccount = accountRepository.findByAccountNumber(transferRequestDTO.getDestinationAccountNumber())
                 .orElseThrow(()-> new NotFoundException("Destination account does not exists"));
 
-        if(senderAccount.getBalance().compareTo(transferRequestDTO.getAmount())>0)
+        if(senderAccount.getBalance().compareTo(transferRequestDTO.getAmount())<0)
             throw new InvalidTransactionException("Insufficient Balance!");
 
         senderAccount.setBalance(senderAccount.getBalance().subtract(transferRequestDTO.getAmount()));
