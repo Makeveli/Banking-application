@@ -1,29 +1,28 @@
-$Stage 1: Build the application
+# Stage 1: Build the application
 FROM eclipse-temurin:21-jdk-jammy AS builder
 
-#Set the working directory inside the container
+# Set working directory
 WORKDIR /app
 
+# Install Maven
 RUN apt-get update && apt-get install -y --no-install-recommends maven && rm -rf /var/lib/apt/lists/*
 
+# Copy and resolve dependencies
 COPY pom.xml .
-
 RUN mvn dependency:go-offline -B
 
+# Copy source and build
 COPY src ./src
+RUN mvn clean package -DskipTests
 
-RUN mvn clean package -Dmaven.test.skip=true
-
-$Stage 2: Build a production ready image and run
+# Stage 2: Run the application
 FROM eclipse-temurin:21-jre-jammy
 
 WORKDIR /app
 
-# Copy final executable jar files from the 'builder' stage's target directory
-# This is key advantage of multi-stage builds: only the artifact is copied and not build tools or source
-COPY -- from=builder /app/targets/*.jar app.jar
+# Copy jar from builder stage
+COPY --from=builder /app/target/*.jar app.jar
 
 EXPOSE 8090
 
-# Define the command to run the application when the container starts
 ENTRYPOINT ["java","-jar","app.jar"]
