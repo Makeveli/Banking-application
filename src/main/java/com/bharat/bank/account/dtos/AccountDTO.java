@@ -1,13 +1,14 @@
 package com.bharat.bank.account.dtos;
 
 import com.bharat.bank.auth_users.dtos.UserDTO;
-import com.bharat.bank.auth_users.entity.User;
 import com.bharat.bank.enums.AccountStatus;
 import com.bharat.bank.enums.AccountType;
 import com.bharat.bank.enums.Currency;
 import com.bharat.bank.transactions.dtos.TransactionDTO;
-import com.fasterxml.jackson.annotation.*;
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +16,6 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data

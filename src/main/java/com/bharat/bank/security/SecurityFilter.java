@@ -1,6 +1,5 @@
 package com.bharat.bank.security;
 
-import com.bharat.bank.auth_users.entity.User;
 import com.bharat.bank.exceptions.CustomAccessDenialHandler;
 import com.bharat.bank.exceptions.CustomAuthenticationEntryPoint;
 import lombok.RequiredArgsConstructor;

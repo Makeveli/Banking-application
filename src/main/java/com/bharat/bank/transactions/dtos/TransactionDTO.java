@@ -1,11 +1,9 @@
 package com.bharat.bank.transactions.dtos;
 
 import com.bharat.bank.account.dtos.AccountDTO;
-import com.bharat.bank.account.entity.Account;
 import com.bharat.bank.enums.TransactionStatus;
 import com.bharat.bank.enums.TransactionType;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

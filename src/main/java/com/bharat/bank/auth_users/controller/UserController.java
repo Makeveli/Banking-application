@@ -2,7 +2,6 @@ package com.bharat.bank.auth_users.controller;
 
 import com.bharat.bank.auth_users.dtos.UpdatePasswordRequest;
 import com.bharat.bank.auth_users.dtos.UserDTO;
-import com.bharat.bank.auth_users.entity.User;
 import com.bharat.bank.auth_users.services.UserService;
 import com.bharat.bank.response.Response;
 import jakarta.validation.Valid;

@@ -1,6 +1,5 @@
 package com.bharat.bank.auth_users.dtos;
 
-import com.bharat.bank.role.entity.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
