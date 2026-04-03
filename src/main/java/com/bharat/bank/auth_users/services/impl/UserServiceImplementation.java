@@ -1,6 +1,5 @@
 package com.bharat.bank.auth_users.services.impl;
 
-import com.bharat.bank.account.dtos.AccountDTO;
 import com.bharat.bank.auth_users.dtos.UpdatePasswordRequest;
 import com.bharat.bank.auth_users.dtos.UserDTO;
 import com.bharat.bank.auth_users.entity.User;
@@ -14,7 +13,6 @@ import com.bharat.bank.notification.services.NotificationService;
 import com.bharat.bank.response.Response;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -32,10 +30,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

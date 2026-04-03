@@ -3,7 +3,6 @@ package com.bharat.bank.role.controller;
 import com.bharat.bank.response.Response;
 import com.bharat.bank.role.entity.Role;
 import com.bharat.bank.role.services.RoleService;
-import com.bharat.bank.role.services.RoleServiceImplementation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

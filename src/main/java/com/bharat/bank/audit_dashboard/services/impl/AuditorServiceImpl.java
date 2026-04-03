@@ -5,12 +5,10 @@ import com.bharat.bank.account.repo.AccountRepository;
 import com.bharat.bank.audit_dashboard.services.AuditorService;
 import com.bharat.bank.auth_users.dtos.UserDTO;
 import com.bharat.bank.auth_users.repo.UserRepository;
-import com.bharat.bank.exceptions.NotFoundException;
 import com.bharat.bank.transactions.dtos.TransactionDTO;
 import com.bharat.bank.transactions.repo.TransactionReposiitory;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,6 +1,5 @@
 package com.bharat.bank.security;
 
-import ch.qos.logback.core.util.StringUtil;
 import com.bharat.bank.exceptions.CustomAuthenticationEntryPoint;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

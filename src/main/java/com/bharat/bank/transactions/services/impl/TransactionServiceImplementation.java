@@ -4,7 +4,6 @@ import com.bharat.bank.account.entity.Account;
 import com.bharat.bank.account.repo.AccountRepository;
 import com.bharat.bank.account.services.AccountService;
 import com.bharat.bank.auth_users.entity.User;
-import com.bharat.bank.auth_users.entity.User;
 import com.bharat.bank.auth_users.services.UserService;
 import com.bharat.bank.enums.TransactionStatus;
 import com.bharat.bank.enums.TransactionType;
@@ -28,13 +27,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.TransactionException;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @Service
 @Slf4j
