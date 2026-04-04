@@ -5,7 +5,6 @@ on:
     branches:
       - main
 
-# 🚨 Prevent collisions
 concurrency:
   group: prod-deploy
   cancel-in-progress: true
@@ -24,8 +23,12 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ec2-user
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          timeout: 30m   # ⏱️ prevent timeout kill
+          timeout: 30m
+          command_timeout: 30m   # ✅ IMPORTANT FIX
+          debug: true            # ✅ shows logs
           script: |
+            set -x
+
             echo "🚀 Starting deployment..."
 
             cd /home/ec2-user/projects/Banking-application
@@ -37,7 +40,7 @@ jobs:
             docker-compose down
 
             echo "🔨 Building image..."
-            docker-compose build --no-cache
+            docker-compose build   # ✅ removed --no-cache
 
             echo "🚀 Starting containers..."
             docker-compose up -d
