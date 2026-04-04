@@ -1,0 +1,33 @@
+# Git
+.git
+.gitignore
+
+# Build output
+target/
+build/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Environment (security)
+.env
+.env.*
+
+# Node (if any frontend)
+node_modules/
+
+# Tests (optional)
+src/test/
+
+# Misc
+*.md
+*.sh
