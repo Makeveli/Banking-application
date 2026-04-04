@@ -5,20 +5,41 @@ on:
     branches:
       - main
 
+# 🚨 Prevent collisions
+concurrency:
+  group: prod-deploy
+  cancel-in-progress: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Deploy to EC2
+      - name: Deploy to EC2 via SSH
         uses: appleboy/ssh-action@master
         with:
-          host: ${{secrets.SSH_HOST}}
+          host: ${{ secrets.SSH_HOST }}
           username: ec2-user
-          key: ${{secrets.SSH_PRIVATE_KEY}}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          timeout: 30m   # ⏱️ prevent timeout kill
           script: |
+            echo "🚀 Starting deployment..."
+
             cd /home/ec2-user/projects/Banking-application
+
+            echo "📥 Pulling latest code..."
             git pull
-            docker-compose up --build -d
+
+            echo "🛑 Stopping existing containers..."
+            docker-compose down
+
+            echo "🔨 Building image..."
+            docker-compose build --no-cache
+
+            echo "🚀 Starting containers..."
+            docker-compose up -d
+
+            echo "✅ Deployment completed!"
