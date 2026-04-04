@@ -5,7 +5,6 @@ on:
     branches:
       - main
 
-# Prevent multiple deployments at the same time
 concurrency:
   group: prod-deploy
   cancel-in-progress: true
@@ -26,12 +25,11 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
 
-          # Timeouts (IMPORTANT)
           timeout: 30m
           command_timeout: 30m
 
-          # Enable debugging logs
           debug: true
+          request_pty: true
 
           script: |
             set -x
