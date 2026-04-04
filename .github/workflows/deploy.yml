@@ -5,6 +5,7 @@ on:
     branches:
       - main
 
+# Prevent multiple deployments at the same time
 concurrency:
   group: prod-deploy
   cancel-in-progress: true
@@ -23,26 +24,31 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ec2-user
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+
+          # Timeouts (IMPORTANT)
           timeout: 30m
-          command_timeout: 30m   # ✅ IMPORTANT FIX
-          debug: true            # ✅ shows logs
+          command_timeout: 30m
+
+          # Enable debugging logs
+          debug: true
+
           script: |
             set -x
 
-            echo "🚀 Starting deployment..."
-
+            echo "Step 1: Navigate to project"
             cd /home/ec2-user/projects/Banking-application
 
-            echo "📥 Pulling latest code..."
+            echo "Step 2: Pull latest code"
             git pull
 
-            echo "🛑 Stopping existing containers..."
+            echo "Step 3: Stop existing containers"
             docker-compose down
 
-            echo "🔨 Building image..."
-            docker-compose build   # ✅ removed --no-cache
+            echo "Step 4: Build Docker image"
+            docker-compose build --progress=plain
 
-            echo "🚀 Starting containers..."
+            echo "Step 5: Start containers"
             docker-compose up -d
 
-            echo "✅ Deployment completed!"
+            echo "Step 6: Deployment completed successfully"
